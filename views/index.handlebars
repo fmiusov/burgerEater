@@ -1,38 +1,53 @@
-<h1>Burgers!</h1>
+<div class="container">
+  <h1>Burgers!</h1>
+  <br>
+  <div class="row justify-content-between">
+    <div class="col-5 card">
+      <div class="card-body">
+        <h3 class="card-title">Burgers that have not been eaten</h3>
 
-<h2>Burgers that have not been Eaten!</h2>
+        <ul class="list-group list-group-flush">
+          {{#each burgers}}
+          {{#unless eaten}}
+          {{> burgers/burger-block eaten=true}}
+          {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class="col-5 card">
+      <div class="card-body">
+        <h3 class="card-title">Burgers that have been eaten</h3>
 
-<ul>
-  {{#each burgers}}
-    {{#unless eaten}}
-      {{> burgers/burger-block eaten=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Burgers that are Eaten!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if eaten}}
-      {{> burgers/burger-block eaten=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+        <ul class="list-group list-group-flush">
+          {{#each burgers}}
+          {{#if eaten}}
+          {{> burgers/burger-block eaten=false}}
+          {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
+  <br>
+  <div id="input-form" class="card col-12">
+    <div class="card-body">
+      <h3>Add a Burger</h3>
+      <form class="create-form">
 
-  <div class="form-group">
-    <label for="eaten">Eaten?</label><br>
-    <input type="radio" name="eaten" value="1" checked> Eaten!<br>
-    <input type="radio" name="eaten" value="0"> Not Eaten
+        <div class="form-group">
+          <label for="ca">Burger Name:</label>
+          <input type="text" id="ca" name="name">
+        </div>
+
+        <div class="form-group">
+          <label for="eaten">Eaten?</label><br>
+          <input type="radio" name="eaten" value="1" checked> Eaten!<br>
+          <input type="radio" name="eaten" value="0"> Not Eaten
+        </div>
+
+        <button class = "btn btn-success"type="submit">Add Burger</button>
+      </form>
+    </div>
   </div>
-
-  <button type="submit">Add Burger</button>
-</form>
+</div>
